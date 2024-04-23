@@ -1,2 +1,13 @@
 openai
 pandas
+sqlalchemy-iris
+langchain-iris
+testcontainers-iris
+llama-iris
+sentence-transformers
+langchain
+fastembed
+tiktoken
+python-dotenv
+ipykernel
+setuptools
