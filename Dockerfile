@@ -10,11 +10,14 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisbuild
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY src src
+COPY data data
 COPY module.xml module.xml
 COPY iris.script iris.script
 COPY requirements.txt requirements.txt
 
 RUN pip3 install -r requirements.txt
+
+RUN tar -xvzf /data/glassdoor_reviews.tar.gz -C /data/glassdoor_reviews.csv
 
 RUN iris start IRIS \
 	&& iris session IRIS < iris.script \
