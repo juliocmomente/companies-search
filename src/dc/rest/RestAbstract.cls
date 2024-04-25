@@ -1,9 +1,13 @@
-Class dc.REST.Base Extends %CSP.REST [ System = 3 ]
+Class dc.rest.RestAbstract Extends %CSP.REST [ System = 3 ]
 {
 
 Parameter CHARSET = "utf-8";
 
+Parameter CONVERTINPUTSTREAM = 1;
+
 Parameter CONTENTTYPE = "application/json";
+
+Parameter Version = "1.0.0";
 
 Parameter HandleCorsRequest = 1;
 
@@ -95,14 +99,6 @@ ClassMethod ReportHttpStatusCode(pHttpStatus, pSC As %Status = {$$$OK}) As %Stat
   Set %response.Status=pHttpStatus
   
   If $$$ISERR(pSC) Do ..outputStatus(pSC)
-  /*
-  If (+pHttpStatus>=400) {
-    Set %response.ContentType = "application/json"
-    SET pResult = {
-      "error": ($PIECE(pHttpStatus, " ", 2, *))
-    }
-    Return ..%ProcessResult($$$OK, pResult)
-  }*/
       
   Return $$$OK
 }
