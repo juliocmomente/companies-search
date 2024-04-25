@@ -1,15 +1,5 @@
-Class dc.Server Extends dc.REST.Base
+Class dc.Server Extends dc.rest.RestAbstract
 {
-
-Parameter CHARSET = "utf-8";
-
-Parameter CONVERTINPUTSTREAM = 1;
-
-Parameter CONTENTTYPE = "application/json";
-
-Parameter Version = "1.0.0";
-
-Parameter HandleCorsRequest = 1;
 
 ClassMethod ping() As %Status
 {
