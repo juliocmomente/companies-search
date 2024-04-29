@@ -103,4 +103,10 @@ ClassMethod ReportHttpStatusCode(pHttpStatus, pSC As %Status = {$$$OK}) As %Stat
   Return $$$OK
 }
 
+ClassMethod GetQueryStringValue(pKey, pIndex = 1) As %String
+{
+  #DIM %request As %CSP.Request
+  Return %request.Get(pKey,,pIndex)
+}
+
 }
