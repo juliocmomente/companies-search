@@ -1,22 +1,8 @@
-Class dc.VectorSearch Extends %RegisteredObject{
+Class dc.VectorSearch Extends %RegisteredObject
+{
 
-    Property gpt as dc.gpt;
-
-    ClassMethod search(pKey As %String, pQtd As %Integer, pPros As %Boolean) As ListRespondeDto {
-        
-        Set response = ##class(ListResponseDto).%New()
-        Set CompaniesList = ##class(%ListOfDataTypes).%New()
-        Set results = ..vectorSearch(pKey,pQtd,pPros)
-
-        //For i=1:1:CompaniesList.Count(){
-        //    Set respondeDto = gpt.summarize(CompaniesList.GetAt(i))
-        //    Do response.Insert(respondeDto)
-        //}
-        //TODO
-        Return response
-    }
-
-    ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) As %String [Language = python ] {
+ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) As %String [ Language = python ]
+{
         from sentence_transformers import SentenceTransformer
         from sqlalchemy import create_engine, text
 
@@ -42,6 +28,6 @@ Class dc.VectorSearch Extends %RegisteredObject{
                 sql = text(query)
                 results = conn.execute(sql, {'search_vector': str(search_vector)}).fetchall()
         return results
-    }
+}
 
 }

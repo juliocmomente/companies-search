@@ -1,2 +1,4 @@
 openai
 pandas
+sentence-transformers
+sqlalchemy-iris
