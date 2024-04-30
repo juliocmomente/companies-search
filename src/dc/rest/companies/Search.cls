@@ -1,4 +1,4 @@
-Class dc.rest.companies.Search Extends dc.rest.RestAbstract
+Class dc.rest.companies.Search Extends %dc.rest.RestAbstract
 {
 
 ClassMethod GetCompanies() As %Status
