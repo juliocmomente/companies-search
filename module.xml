@@ -10,7 +10,7 @@
 
       <CSPApplication 
         Url="/api/companies"
-        DispatchClass="dc.Server"
+        DispatchClass="dc.rest.Api"
         MatchRoles=":{$dbrole}"
         PasswordAuthEnabled="0"
         UnauthenticatedEnabled="0"
