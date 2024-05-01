@@ -6,15 +6,7 @@ ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) A
         import os
         from sentence_transformers import SentenceTransformer
         import iris
-        #from sqlalchemy import create_engine, text
-
-        #username = 'demo'
-        #password = 'demo'
-        #hostname = os.getenv('IRIS_HOSTNAME', 'localhost')
-        #port = '1972' 
-        #namespace = 'USER'
-        #CONNECTION_STRING = f"iris://{username}:{password}@{hostname}:{port}/{names+pace}"
-        #engine = create_engine(CONNECTION_STRING)
+        from sqlalchemy import create_engine, text
 
         username = '_SYSTEM'
         password = 'SYS'
