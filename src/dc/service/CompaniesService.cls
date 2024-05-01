@@ -1,8 +1,17 @@
 Class dc.service.CompaniesService Extends %RegisteredObject
 {
 
-ClassMethod GetRsCompanies(pKey As %String, pNumberOfResults As %Integer) As %SQL.Statement
+ClassMethod getReviewsCompany(pCompany) As %List [ Language = python ]
 {
+    import iris
+    listreviews = []
+    stmt = iris.sql.prepare("SELECT TOP 50 firm, jobTitle, pros, cons FROM SQLUser.reviews WHERE  firm = ?")
+    
+    rs = stmt.execute(pCompany)
+    for idx, row in enumerate(rs):
+        listreviews.append(f'About {row[0]} work with {row[1]} positive points: {row[2]}.\n negative points: {row[3]}.')
+        
+    return listreviews
 }
 
 }

@@ -1,6 +1,8 @@
 Class dc.init Extends %RegisteredObject
 {
-    ClassMethod init() [ Language = python ] {
+
+ClassMethod init() [ Language = python ]
+{
         import os, pandas as pd
         from sentence_transformers import SentenceTransformer
         from sqlalchemy import create_engine, text
@@ -78,7 +80,6 @@ Class dc.init Extends %RegisteredObject
                         'cons': row['cons'], 
                         'cons_vector': str(row['cons_vector'])
                     })
-
-    }
+}
 
 }
