@@ -20,7 +20,7 @@ ClassMethod GetCompanies() As %Status [ Language = python ]
     pros = bool(pros) if pros != "" else True
 
     listSumarizeCompanies = []
-    companies = iris.cls("dc.VectorSearch").vectorSearch(key,numberOfResults,pros)
+    companies = iris.cls("dc.service.CompaniesService").vectorSearch(key,numberOfResults,pros)
     
     for firm in companies:
         summarize = {
