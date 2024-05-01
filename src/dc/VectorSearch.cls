@@ -1,8 +1,9 @@
 Class dc.VectorSearch Extends %RegisteredObject
 {
 
-ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) As %String [ Language = python ]
+ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) As %List [ Language = python ]
 {
+        return ["google", "IBM"]
         from sentence_transformers import SentenceTransformer
         import iris
         #from sqlalchemy import create_engine, text
@@ -15,7 +16,19 @@ ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) A
         #CONNECTION_STRING = f"iris://{username}:{password}@{hostname}:{port}/{names+pace}"
         #engine = create_engine(CONNECTION_STRING)
 
-        query = """SELECT DISTINCT TOP {0} firm FROM reviews ORDER BY VECTOR_DOT_PRODUCT({1}, TO_VECTOR(:search_vector)) DESC """
+        import iris
+        listreviews = []
+        stmt = iris.sql.prepare("SELECT DISTINCT TOP {0} firm FROM reviews ORDER BY VECTOR_DOT_PRODUCT({1}, TO_VECTOR(:search_vector)) DESC")
+        
+        rs = stmt.execute(pCompany)
+        for idx, row in enumerate(rs):
+            listreviews.append(f'About {row[0]} work with {row[1]} positive points: {row[2]}.\n negative points: {row[3]}.')
+            
+        return listreviews
+
+
+
+        
         if pPros:
             query = query.format(pQtd,"pros_vector")
         else :
