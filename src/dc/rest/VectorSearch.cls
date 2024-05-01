@@ -1,6 +1,6 @@
 Class dc.rest.VectorSearch Extends %RegisteredObject{
 
-    Property Gpt as dc.Gtp;
+    Property Gpt as dc.Gpt;
 
     ClassMethod Search(pKey As %String, pNumberOfResults As %Integer, pPros As %Boolean) As dc.dto.CompaniesResponseDto {
         

@@ -1,13 +1,20 @@
 import pandas as pd
+from sentence_transformers import SentenceTransformer
 import iris
 
 df = pd.read_csv('/opt/irisbuild/data/glassdoor_reviews.csv')
 
-#pros_embeddings = model.encode(df['pros'].tolist(), normalize_embeddings=True)
-#df['pros_vector'] = pros_embeddings.tolist()
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
-#cons_embeddings = model.encode(df['cons'].tolist(), normalize_embeddings=True)
-#df['cons_vector'] = cons_embeddings.tolist()
+df = df[['firm', 'job_title', 'pros', 'cons' ]]
+
+#encoding pros
+embeddings = model.encode(df['pros'].tolist(), normalize_embeddings=True)
+df['pros_vector'] = embeddings.tolist()
+
+#encoding cons
+embeddings = model.encode(df['cons'].tolist(), normalize_embeddings=True)
+df['cons_vector'] = embeddings.tolist()
 
 
 sql = f"""
@@ -15,7 +22,10 @@ sql = f"""
                     firm VARCHAR(255),
                     jobTitle VARCHAR(255),
                     pros VARCHAR(200000),
-                    cons VARCHAR(200000)
+                    pros_vector VECTOR(DOUBLE, 384),
+                    cons VARCHAR(200000),
+                    cons_vector VECTOR(DOUBLE, 384)
+
                 )
             """
 result = iris.sql.exec(sql)
