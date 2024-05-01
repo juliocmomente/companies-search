@@ -1,8 +1,6 @@
 Class dc.VectorSearch Extends %RegisteredObject
 {
-
-ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) As %String [ Language = python ]
-{
+    ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) As %String [Language = python ] {
         from sentence_transformers import SentenceTransformer
         from sqlalchemy import create_engine, text
 
@@ -28,6 +26,6 @@ ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) A
                 sql = text(query)
                 results = conn.execute(sql, {'search_vector': str(search_vector)}).fetchall()
         return results
-}
+    }
 
 }
