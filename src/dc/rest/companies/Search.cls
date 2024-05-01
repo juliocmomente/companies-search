@@ -1,27 +1,39 @@
 Class dc.rest.companies.Search Extends dc.rest.RestAbstract
 {
 
-ClassMethod GetCompanies() As %Status
+ClassMethod GetCompanies() As %Status [ Language = python ]
 {
-    Set key = ..GetQueryStringValue("key")
-    Set numberOfResults = ..GetQueryStringValue("numberOfResults")
-    Set prosOrCons = ..GetQueryStringValue("prosOrCons")
+    import iris
+    import json
+
+    key = iris.cls("dc.rest.RestAbstract").GetQueryStringValue("key")
+    numberOfResults = iris.cls("dc.rest.RestAbstract").GetQueryStringValue("numberOfResults")
+    pros = iris.cls("dc.rest.RestAbstract").GetQueryStringValue("pros")
+
+    if key == "":
+        print("No records returned.")
+        return iris.cls("%SYSTEM.Status").OK()
+
+    if numberOfResults == "":
+        numberOfResults = 5
+        
+    pros = bool(pros) if pros != "" else True
+
+    listSumarizeCompanies = []
+    companies = iris.cls("dc.VectorSearch").vectorSearch(key,numberOfResults,pros)
     
-    //Set jsonString = "{key:""_key_"",numberOfResults:""_numberOfResults_"",prosOrCons:""_prosOrCons""}"
-    Write {"ping":"pong"}.%ToJSON()
+    for firm in companies:
+        summarize = {
+            "Company" :  firm,
+            "Sumarize": iris.cls("dc.Gpt").Summarize(firm)
+        }
+        listSumarizeCompanies.append(summarize)
 
-    //Set response = ##class(ListResponseDto).%New()
-    //Set CompaniesList = ##class(%ListOfDataTypes).%New()
-    //Set results = ..vectorSearch(pKey,pQtd,pPros)
+    json_formatado = json.dumps(listSumarizeCompanies, indent=4)
 
-    //For i=1:1:CompaniesList.Count(){
-    //    Set respondeDto = gpt.summarize(CompaniesList.GetAt(i))
-    //    Do response.Insert(respondeDto)
-    //}
-    //TODO
-    //Return response
+    print(json_formatado)
 
-    Return $$$OK
+    return iris.cls("%SYSTEM.Status").OK()
 }
 
 }
