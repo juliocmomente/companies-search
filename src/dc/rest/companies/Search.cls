@@ -1,27 +1,20 @@
 Class dc.rest.companies.Search Extends dc.rest.RestAbstract
 {
 
-ClassMethod GetCompanies() As %Status
+ClassMethod GetCompanies() As %Status [ Language = python ]
 {
-    Set key = ..GetQueryStringValue("key")
-    Set numberOfResults = ..GetQueryStringValue("numberOfResults")
-    Set prosOrCons = ..GetQueryStringValue("prosOrCons")
+    import iris
+    key = iris.cls("dc.rest.RestAbstract").GetQueryStringValue("key")
+    numberOfResults = iris.cls("dc.rest.RestAbstract").GetQueryStringValue("numberOfResults")
+    prosOrCons = iris.cls("dc.rest.RestAbstract").GetQueryStringValue("prosOrCons")
+
+    companies = iris.cls("dc.VectorSearch").vectorSearch(key,numberOfResults,prosOrCons)
     
-    //Set jsonString = "{key:""_key_"",numberOfResults:""_numberOfResults_"",prosOrCons:""_prosOrCons""}"
-    Write {"ping":"pong"}.%ToJSON()
+    for row in companies:
+        firm = row[0]
 
-    //Set response = ##class(ListResponseDto).%New()
-    //Set CompaniesList = ##class(%ListOfDataTypes).%New()
-    //Set results = ..vectorSearch(pKey,pQtd,pPros)
-
-    //For i=1:1:CompaniesList.Count(){
-    //    Set respondeDto = gpt.summarize(CompaniesList.GetAt(i))
-    //    Do response.Insert(respondeDto)
-    //}
-    //TODO
-    //Return response
-
-    Return $$$OK
+    
+    return iris.cls("%SYSTEM.Status").OK()
 }
 
 }
