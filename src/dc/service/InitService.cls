@@ -1,4 +1,4 @@
-Class dc.init Extends %RegisteredObject
+Class dc.service.InitService Extends %RegisteredObject
 {
 
 ClassMethod init() [ Language = python ]
