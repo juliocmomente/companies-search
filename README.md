@@ -69,17 +69,13 @@ http://localhost:52773/api/companies/search
 ```
 To perform the company search, this endpoint accepts up to 3 parameters to facilitate the search:
 
-* `key`: This parameter is the main search filter, where the keyword you wish to find in companies should be entered, such as:
+* `key`: This parameter is the main search filter. Here you should enter a word or sentence to be searched into companies reviews (pros or cons). The search engine is based on vector search. 
 
-    * **Company Name**: You can specify a specific company name, such as **Google** or **IBM**. In this example, the search will retrieve a summary of these companies if they exist in the database.
-    
-    * **Specific features**: It's possible to search for characteristics that you want to find in companies, such as: **flexible hours**, in this scenario, the API will search for companies operating in this format.
-    
-    * **Job Title**: It's also possible to search for companies that have a job title of your choice, such as **Software Engineer**. In this case, the vector API will search for companies that have this specific job title.
+    So, you can search for characteristics that you want to find in companies, such as: **flexible hours**, in this scenario, the API will search for companies operating in this format.
 
-    * `e.g.:` 
+    `e.g.:` 
     ```Shell
-    http://localhost:52773/api/companies/search?Google
+    http://localhost:52773/api/companies/search?flexible
     ```
 
     **OBS:** If this parameter is not provided, the API will not perform any search and will return the following error to the user: `No records returned.`
