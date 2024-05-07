@@ -3,10 +3,10 @@
 *.int linguist-language=ObjectScript
 *.inc linguist-language=ObjectScript
 *.csp linguist-language=Html
-
 *.sh text eol=lf
 *.cls text eol=lf
 *.mac text eol=lf
 *.int text eol=lf
 *.inc text eol=lf
 Dockerfil* text eol=lf
+data/glassdoor_reviews_vector.tar.gz filter=lfs diff=lfs merge=lfs -text
