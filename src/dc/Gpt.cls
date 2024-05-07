@@ -27,7 +27,7 @@ ClassMethod Summarize(pCompany As %String) As %String
         "Authorization": "Bearer " + os.getenv('OPENAI_API_KEY', 'null'),
         "Content-Type": "application/json"
     }
-    
+
     listreviews = iris.cls("dc.service.CompaniesService").ReviewsCompany(pCompany)
     for review in listreviews:
         payload["messages"].append({"role": "user", "content": review})
