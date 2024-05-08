@@ -14,6 +14,7 @@ RUN tar -xvzf /opt/irisbuild/data/glassdoor_reviews.tar.gz -C /opt/irisbuild/dat
 RUN chown -R $ISC_PACKAGE_MGRUSER:$ISC_PACKAGE_IRISGROUP /opt/irisbuild/data
 
 USER ${ISC_PACKAGE_MGRUSER}
+ENV OPENAI_API_KEY ${OPENAI_API_KEY}
 
 COPY src src
 COPY module.xml module.xml

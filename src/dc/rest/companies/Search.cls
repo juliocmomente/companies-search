@@ -15,13 +15,17 @@ ClassMethod GetCompanies() As %Status [ Language = python ]
         return iris.cls("%SYSTEM.Status").OK()
 
     if numberOfResults == "":
-        numberOfResults = 5
-        
+        numberOfResults = 3
+    
+    if numberOfResults > 10:
+        print("To many requests.")
+        return iris.cls("%SYSTEM.Status").OK()
+
     pros = bool(pros) if pros != "" else True
 
     listSumarizeCompanies = []
     companies = iris.cls("dc.service.CompaniesService").vectorSearch(key,numberOfResults,pros)
-    
+
     for firm in companies:
         summarize = {
             "Company" :  firm,
@@ -30,7 +34,6 @@ ClassMethod GetCompanies() As %Status [ Language = python ]
         listSumarizeCompanies.append(summarize)
 
     json_formatado = json.dumps(listSumarizeCompanies, indent=4)
-
     print(json_formatado)
 
     return iris.cls("%SYSTEM.Status").OK()

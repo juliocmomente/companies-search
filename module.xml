@@ -11,7 +11,7 @@
       <CSPApplication 
         Url="/api/companies"
         DispatchClass="dc.rest.Api"
-        MatchRoles=":{$dbrole}"
+        MatchRoles="%all"
         PasswordAuthEnabled="0"
         UnauthenticatedEnabled="0"
         Recurse="1"
