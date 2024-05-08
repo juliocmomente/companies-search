@@ -7,11 +7,11 @@
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="dc.PKG"/>
-
+      
       <CSPApplication 
         Url="/api/companies"
         DispatchClass="dc.rest.Api"
-        MatchRoles="%all"
+        MatchRoles=":%All"
         PasswordAuthEnabled="0"
         UnauthenticatedEnabled="0"
         Recurse="1"

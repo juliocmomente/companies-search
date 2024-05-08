@@ -24,7 +24,7 @@ ClassMethod Summarize(pCompany As %String) As %String
     }
 
     request_header = {
-        "Authorization": "Bearer " + os.getenv('OPENAI_API_KEY', 'null'),
+        "Authorization": "Bearer " + os.getenv('OPENAI_API_KEY','null'),
         "Content-Type": "application/json"
     }
 
