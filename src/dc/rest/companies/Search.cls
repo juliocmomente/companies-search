@@ -25,6 +25,9 @@ ClassMethod GetCompanies() As %Status [ Language = python ]
 
     listSumarizeCompanies = []
     companies = iris.cls("dc.service.CompaniesService").vectorSearch(key,numberOfResults,pros)
+    if len(companies) == 0:
+        print("No records found.")
+        return iris.cls("%SYSTEM.Status").OK()
 
     for firm in companies:
         summarize = {
