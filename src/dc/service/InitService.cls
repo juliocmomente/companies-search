@@ -16,24 +16,11 @@ ClassMethod init() [ Language = python ]
     print("finish loading csv file")
     
     print("Start adjusting data")
-    # drop columns
-    df.drop(columns=df.columns[14], inplace=True)
-    df.drop(columns=df.columns[13], inplace=True)
-    df.drop(columns=df.columns[12], inplace=True)
-    df.drop(columns=df.columns[11], inplace=True)
-    df.drop(columns=df.columns[10], inplace=True)
-    df.drop(columns=df.columns[9], inplace=True)
-    df.drop(columns=df.columns[8], inplace=True)
-    df.drop(columns=df.columns[7], inplace=True)
-    df.drop(columns=df.columns[6], inplace=True)
-    df.drop(columns=df.columns[3], inplace=True)
-    df.drop(columns=df.columns[2], inplace=True)
-    df.drop(columns=df.columns[1], inplace=True)
+    df = df[['firm','job_title','location','overall_rating','headline','pros','cons']]
 
     # Remove rows without a evaluation
     df.dropna(subset=['pros'], inplace=True)
     df.dropna(subset=['cons'], inplace=True)
-    print("Finish adjusting data")
     numOfRows = len(df)
     print(f'rows = {numOfRows}')
     
@@ -48,8 +35,11 @@ ClassMethod init() [ Language = python ]
     df['pros_without_stopwords'] = df['pros'].apply(remove_stop_words)
     df['cons_without_stopwords'] = df['cons'].apply(remove_stop_words)
     
+    print("Finish adjusting data")
+
     print("Creating model and encoding embedings")
     model = SentenceTransformer('all-MiniLM-L6-v2') 
+    
     #encoding pros
     embeddings = model.encode(df['pros_without_stopwords'].tolist(), normalize_embeddings=True)
     df['pros_vector'] = embeddings.tolist()
