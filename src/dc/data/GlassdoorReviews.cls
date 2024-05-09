@@ -1,6 +1,8 @@
 Class dc.data.GlassdoorReviews Extends %Persistent
 {
 
+Index idxFirm On firm;
+
 Property firm As %String(MAXLEN = 255);
 
 Property location As %String(MAXLEN = 255);

@@ -29,10 +29,12 @@ ClassMethod GetCompanies() As %Status [ Language = python ]
         print("No records found.")
         return iris.cls("%SYSTEM.Status").OK()
 
-    for firm in companies:
+    for glassdoorReview in companies:
         summarize = {
-            "Company" :  firm,
-            "Sumarize": iris.cls("dc.Gpt").Summarize(firm)
+            "Company" : glassdoorReview.firm,
+            "location" : glassdoorReview.location,
+            "overallRating" : glassdoorReview.overallRating,
+            "Sumarize": iris.cls("dc.Gpt").Summarize(glassdoorReview.firm)
         }
         listSumarizeCompanies.append(summarize)
 

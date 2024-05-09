@@ -26,7 +26,7 @@ ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) A
         filtered_words = [word for word in words if word.lower() not in stop_words]
         pKey = ' '.join(filtered_words)
 
-    query = """SELECT DISTINCT TOP {0} firm FROM dc_data.GlassdoorReviews ORDER BY VECTOR_DOT_PRODUCT({1}, TO_VECTOR(?)) DESC """
+    query = """SELECT TOP {0} ID FROM dc_data.GlassdoorReviews GROUP BY firm ORDER BY VECTOR_DOT_PRODUCT({1}, TO_VECTOR(?)) DESC """
     if pPros:
         query = query.format(pQtd,"prosVector")
     else :
@@ -40,7 +40,8 @@ ClassMethod vectorSearch(pKey As %String, pQtd As %Integer, pPros As %Boolean) A
     stmt = iris.sql.prepare(query)
     rs = stmt.execute(str(search_vector))
     for idx, row in enumerate(rs):
-        results.append(row[0])
+        glassdoorReview = iris.cls("dc.data.GlassdoorReviews")._OpenId(row[0])
+        results.append(glassdoorReview)
     
     return results
 }
