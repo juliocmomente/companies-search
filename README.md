@@ -1,15 +1,18 @@
 # Companies Search
-The Companies Search is a REST API based on InterSystems Vector Search, designed to retrieve companies from a vector database using keywords. The API can locate companies that have semantic similarity with the provided keywords, ensuring relevant and accurate results.
+The Companies Search is a REST API based on InterSystems Vector Search, designed to retrieve companies from a vector database using keywords. The vector database was created interpreting a CSV dataset that we acquired of Kaggle website and converting datas on vector type.
+
+The API can locate companies that have semantic similarity with the provided keywords, ensuring relevant and accurate results.
 
 Once the companies are located, the API utilizes ChatGPT for IRIS to process the data and generate informative summaries. These summaries provide users with an overview of the companies returned by the vector search. Additionally, users have the option to request summaries focusing on "positive" or "negative" aspects of the companies.
 
-Essentially, this platform offers users the ability to quickly obtain initial impressions of specific companies, whether for potential collaboration or service provision purposes.
+Essentially, this platform offers users the ability to quickly obtain initial impressions of companies, whether for potential collaboration or service provision purposes.
 
 ## Índice
 
 - [Installation](#Installation)
 - [Solution](#Solution)
     - [Architectural modeling](#Architectural-modelingl)
+    - [Sequencial Diagrama](#Sequencial-diagram)
     - [Logic modeling](#Logic-modeling)
     - [Data input](#Data-input)
     - [Data output](#Data-output)
@@ -30,15 +33,17 @@ git clone https://github.com/juliocmomente/companies-search.git
 
 ![alt text](/assets/create-new-secret-key.png)
 
-4. Update the corresponding entry in `docker-compose.yml`
+4. Update the property `OPENAI_API_KEY` in `.env` file with your secret key.
 
-![alt text](/assets/docker-compose-example.png)
+![alt text](/assets/env-file-example.png)
 
 5. Start the Docker containers:
     ```Shell
     docker-compose up
     ```
-    OBS: The `Dockerfile` has all configurations you need to start the project. The first run will probably take a few minutes to download all dependencies and create the vectorized database.
+    OBS: The `Dockerfile` has all configurations you need to start the project. 
+    
+    The first run will probably take a few minutes to download all dependencies and create the vectorized database, something around of 25 minutes.
 
 ## Solution
 
@@ -55,6 +60,21 @@ Below is a detailed explanation of the modeling used in the project.
 ### Architectural modeling
 
 ![alt text](/assets/architectural-modeling.png)
+
+## Sequencial Diagrama
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor user
+    user ->> API: Requests companies based on search term
+    API -> vector search: Searches for companies based on the search term
+    vector search -->> API: Returns companies searched
+
+    API ->> GPT: Requests summaries to the companies returned
+    GPT -->> API: Provides summaries
+    API -->> user: Returns companies with summaries
+```
 
 ### Logic modeling
 
@@ -77,7 +97,7 @@ To perform the company search, this endpoint accepts up to 3 parameters to facil
 
     `e.g.:` 
     ```Shell
-    http://localhost:52773/api/companies/search?flexible
+    http://localhost:52773/api/companies/search?key=flexible%20hours
     ```
 
     **OBS:** If this parameter is not provided, the API will not perform any search and will return the following error to the user: `No records returned.`
@@ -106,13 +126,16 @@ When making the request, consider the following response format in JSON:
 [
     {
         "company": "Google",
+        "location": "USA",
+        "overallRating": 3,
         "summarize": "Summary provided by Chat GPT for the company Google"
     },
     {
         "company": "IBM",
+        "location": "USA",
+        "overallRating": 4,
         "summarize": "Summary provided by Chat GPT for the company IBM"
     }
-
 ]
 ````
 
@@ -144,7 +167,7 @@ Packages:
     * `companies`: Contains the application's only endpoint, /search, for searching for companies.
 * `service`: Business rules and validations, as well as vector database searches.
 
-![alt text](/assets/packages.png)
+![alt text](/assets/package.png)
 
 ## Team Members
 
