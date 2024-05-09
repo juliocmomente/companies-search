@@ -51,7 +51,7 @@ An API with a single endpoint has been developed:
 
 * `GET`, designed to retrieve companies stored in the vector database and return them in JSON format.
 
-The database was acquired from [Kaggle](#https://www.kaggle.com/datasets/davidgauthier/glassdoor-job-reviews/data) and will be represented by a single table called `GlassdoorReview`.
+The database was acquired from [Kaggle](https://www.kaggle.com/datasets/davidgauthier/glassdoor-job-reviews/data) and will be represented by a single table called `GlassdoorReview`.
 
 Finally, a service class named `InitService` was created, which includes a method developed in **Embedded Python** to read the lines from the **CSV** file, insert them, and transform them into **VECTOR** type.
 
