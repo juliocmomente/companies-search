@@ -12,7 +12,7 @@ Essentially, this platform offers users the ability to quickly obtain initial im
 - [Installation](#Installation)
 - [Solution](#Solution)
     - [Architectural modeling](#Architectural-modelingl)
-    - [Sequencial Diagrama](#Sequencial-diagram)
+    - [Sequencial Diagram](#Sequencial-diagram)
     - [Logic modeling](#Logic-modeling)
     - [Data input](#Data-input)
     - [Data output](#Data-output)
@@ -61,7 +61,7 @@ Below is a detailed explanation of the modeling used in the project.
 
 ![alt text](/assets/architectural-modeling.png)
 
-## Sequencial Diagrama
+### Sequencial Diagram
 
 ```mermaid
 sequenceDiagram
