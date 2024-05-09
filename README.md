@@ -107,14 +107,14 @@ To perform the company search, this endpoint accepts up to 3 parameters to facil
 
     `e.g.:` 
     ```Shell
-    http://localhost:52773/api/companies/search?Google&numberOfResults=5
+    http://localhost:52773/api/companies/search?key=flexible%20hours&numberOfResults=5
     ```
 
 * `pros`: This parameter is optional and is of boolean type. It tells the API whether we want to locate companies based on Pros or Cons, that is, positive or negative aspects. Based on this parameter, Chat GPT will compile the corresponding summary.
 
     `e.g.:` 
     ```Shell
-    http://localhost:52773/api/companies/search?Google&numberOfResults=10&pros=0
+    http://localhost:52773/api/companies/search?key=flexible%20hours&numberOfResults=10&pros=0
     ```
     **OBS:** If this parameter is not informed, the initial value will always be 1 (true), that is, it will only look for positive points.
 
