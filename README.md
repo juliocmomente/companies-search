@@ -3,7 +3,7 @@ The Companies Search is a REST API based on InterSystems Vector Search, designed
 
 Once the companies are located, the API utilizes ChatGPT for IRIS to process the data and generate informative summaries. These summaries provide users with an overview of the companies returned by the vector search. Additionally, users have the option to request summaries focusing on "positive" or "negative" aspects of the companies.
 
-Essentially, this platform offers users the ability to quickly obtain initial impressions of specific companies, whether for potential collaboration or service provision purposes.
+Essentially, this platform offers users the ability to quickly obtain initial impressions of companies, whether for potential collaboration or service provision purposes.
 
 ## Índice
 
