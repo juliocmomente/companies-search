@@ -32,11 +32,11 @@ git clone https://github.com/juliocmomente/companies-search.git
 
 3. Click in "Create new secret key" button, type the optional field and click on "Create secret key" button.
 
-![alt text](/assets/create-new-secret-key.png)
+![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/create-new-secret-key.png)
 
 4. Update the property `OPENAI_API_KEY` in `.env` file with your secret key.
 
-![alt text](/assets/env-file-example.png)
+![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/env-file-example.png)
 
 5. Start the Docker containers:
     ```Shell
@@ -60,26 +60,15 @@ Below is a detailed explanation of the modeling used in the project.
 
 ### Architectural modeling
 
-![alt text](/assets/architectural-modeling.png)
+![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/architectural-modeling.png)
 
 ### Sequence diagram
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor user
-    user ->> API: Requests companies based on search term
-    API -> vector search: Searches for companies based on the search term
-    vector search -->> API: Returns companies searched
-
-    API ->> GPT: Requests summaries to the companies returned
-    GPT -->> API: Provides summaries
-    API -->> user: Returns companies with summaries
-```
+![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/sequence-diagram.png)
 
 ### Logic modeling
 
-![alt text](/assets/logic-modeling.png)
+![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/logic-modeling.png)
 
 ### Data input
 
@@ -168,7 +157,7 @@ Packages:
     * `companies`: Contains the application's only endpoint, /search, for searching for companies.
 * `service`: Business rules and validations, as well as vector database searches.
 
-![alt text](/assets/package.png)
+![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/package.png)
 
 ## Video demo
 
