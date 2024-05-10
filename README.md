@@ -10,6 +10,7 @@ Essentially, this platform offers users the ability to quickly obtain initial im
 ## Índice
 
 - [Installation](#Installation)
+- [Video demo](#Video-demo)
 - [Solution](#Solution)
     - [Architectural modeling](#Architectural-modeling)
     - [Sequence diagram](#Sequence-diagram)
@@ -18,7 +19,6 @@ Essentially, this platform offers users the ability to quickly obtain initial im
     - [Data output](#Data-output)
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
-- [Video demo](#Video-demo)
 - [Team members](#Team-members)
 
 ## Installation
@@ -45,6 +45,11 @@ git clone https://github.com/juliocmomente/companies-search.git
     OBS: The `Dockerfile` has all configurations you need to start the project. 
     
     The first run will probably take a few minutes to download all dependencies and create the vectorized database, something around of 25 minutes.
+
+## Video demo
+
+You can access this video to make it easier to see how the API works and/or continue reading the documentation below:
+[Video Demo](https://www.youtube.com/watch?v=OVc47AY-S9k)
 
 ## Solution
 
@@ -158,11 +163,6 @@ Packages:
 * `service`: Business rules and validations, as well as vector database searches.
 
 ![alt text](https://raw.githubusercontent.com/juliocmomente/companies-search/main/assets/package.png)
-
-## Video demo
-
-You can access this video to facilitate see the API works:
-[Video Demo](https://www.youtube.com/watch?v=OVc47AY-S9k)
 
 ## Team members
 
