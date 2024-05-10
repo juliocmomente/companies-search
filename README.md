@@ -18,7 +18,8 @@ Essentially, this platform offers users the ability to quickly obtain initial im
     - [Data output](#Data-output)
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
-- [Team Members](#Team-members)
+- [Video Demo](#Video-demo)
+- [Team members](#Team-members)
 
 ## Installation
 
@@ -169,7 +170,12 @@ Packages:
 
 ![alt text](/assets/package.png)
 
-## Team Members
+## Video demo
+
+You can access this video to facilitate see the API works:
+[Video Demo](https://www.youtube.com/watch?v=OVc47AY-S9k)
+
+## Team members
 
 - Júlio Momente, DC: [Júlio Momente](https://community.intersystems.com/user/julio-momente)
 - Davi Muta, DC: [Davi Muta](https://community.intersystems.com/user/davi-massaru-teixeira-muta)
