@@ -18,7 +18,7 @@ Essentially, this platform offers users the ability to quickly obtain initial im
     - [Data output](#Data-output)
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
-- [Video Demo](#Video-demo)
+- [Video demo](#Video-demo)
 - [Team members](#Team-members)
 
 ## Installation
