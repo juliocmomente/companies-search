@@ -12,7 +12,7 @@ Essentially, this platform offers users the ability to quickly obtain initial im
 - [Installation](#Installation)
 - [Solution](#Solution)
     - [Architectural modeling](#Architectural-modeling)
-    - [Sequencial diagram](#Sequencial-diagram)
+    - [Sequence diagram](#Sequence-diagram)
     - [Logic modeling](#Logic-modeling)
     - [Data input](#Data-input)
     - [Data output](#Data-output)
@@ -51,7 +51,7 @@ An API with a single endpoint has been developed:
 
 * `GET`, designed to retrieve companies stored in the vector database and return them in JSON format.
 
-The database was acquired from [Kaggle](#https://www.kaggle.com/datasets/davidgauthier/glassdoor-job-reviews/data) and will be represented by a single table called `GlassdoorReview`.
+The database was acquired from [Kaggle](https://www.kaggle.com/datasets/davidgauthier/glassdoor-job-reviews/data) and will be represented by a single table called `GlassdoorReview`.
 
 Finally, a service class named `InitService` was created, which includes a method developed in **Embedded Python** to read the lines from the **CSV** file, insert them, and transform them into **VECTOR** type.
 
@@ -61,7 +61,7 @@ Below is a detailed explanation of the modeling used in the project.
 
 ![alt text](/assets/architectural-modeling.png)
 
-### Sequencial diagram
+### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -107,14 +107,14 @@ To perform the company search, this endpoint accepts up to 3 parameters to facil
 
     `e.g.:` 
     ```Shell
-    http://localhost:52773/api/companies/search?Google&numberOfResults=5
+    http://localhost:52773/api/companies/search?key=flexible%20hours&numberOfResults=5
     ```
 
 * `pros`: This parameter is optional and is of boolean type. It tells the API whether we want to locate companies based on Pros or Cons, that is, positive or negative aspects. Based on this parameter, Chat GPT will compile the corresponding summary.
 
     `e.g.:` 
     ```Shell
-    http://localhost:52773/api/companies/search?Google&numberOfResults=10&pros=0
+    http://localhost:52773/api/companies/search?key=flexible%20hours&numberOfResults=10&pros=0
     ```
     **OBS:** If this parameter is not informed, the initial value will always be 1 (true), that is, it will only look for positive points.
 
