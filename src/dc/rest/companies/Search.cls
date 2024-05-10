@@ -16,6 +16,8 @@ ClassMethod GetCompanies() As %Status [ Language = python ]
 
     if numberOfResults == "":
         numberOfResults = 3
+    else:
+        numberOfResults = int(numberOfResults)
     
     if numberOfResults > 10:
         print("To many requests.")
